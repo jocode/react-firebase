@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+
+import FileUpload from './FileUpload';
 import './App.css';
 
 class App extends Component {
@@ -28,7 +30,7 @@ class App extends Component {
 
   handleLogout ()  {
     firebase.auth().signOut()
-    .then(result => console.log(`${result.user.email} Ha Salido`))
+    .then(result => console.log(`Has Salido`))
     .catch(error => console.log(`Error ${error.code}: ${error.message}`));
   }
 
@@ -37,9 +39,10 @@ class App extends Component {
     if (this.state.user){
       return (
        <div>
-        <img src={this.state.user.photoURL} alt={this.state.user.displayName} width={100} height={100}/>
+        <img src={this.state.user.photoURL} alt={this.state.user.displayName} width="100"/>
         <p>Hola {this.state.user.displayName}!</p>
         <button onClick={this.handleLogout}>Salir</button>
+        <FileUpload />
        </div>
       );
     } else {
